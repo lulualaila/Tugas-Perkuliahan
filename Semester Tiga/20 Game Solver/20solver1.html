@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Penyelesai Permainan 24</title>
+  </head>
+  <body>
+    <h1>Penyelesai Permainan 24</h1>
+    <p>Masukkan 4 angka, pisahkan dengan koma (misal: 8,3,3,1):</p>
+    <input type="text" id="inputAngka" placeholder="Masukkan angka..." />
+    <button onclick="main()">Cari Solusi</button>
+
+    <h2>Hasil:</h2>
+    <pre id="hasilOutput"></pre>
+
+    <script>
+      function penyelesai(angka, hasil) {
+        if (angka.length === 1 && Math.abs(angka[0].first - 24) < 0.01) {
+          // Memeriksa kesetaraan dengan toleransi
+          hasil.push(angka[0].second);
+          return;
+        }
+
+        for (let i = 0; i < angka.length - 1; i++) {
+          for (let j = i + 1; j < angka.length; j++) {
+            let angkaBaru = [];
+            for (let k = 0; k < angka.length; k++) {
+              if (k !== i && k !== j) {
+                angkaBaru.push(angka[k]);
+              }
+            }
+
+            // +
+            angkaBaru.push({
+              first: angka[i].first + angka[j].first,
+              second: `(${angka[i].second}+${angka[j].second})`,
+            });
+            penyelesai(angkaBaru, hasil);
+            angkaBaru.pop();
+
+            // -
+            angkaBaru.push({
+              first: angka[i].first - angka[j].first,
+              second: `(${angka[i].second}-${angka[j].second})`,
+            });
+            penyelesai(angkaBaru, hasil);
+            angkaBaru.pop();
+
+            // *
+            angkaBaru.push({
+              first: angka[i].first * angka[j].first,
+              second: `(${angka[i].second}*${angka[j].second})`,
+            });
+            penyelesai(angkaBaru, hasil);
+            angkaBaru.pop();
+
+            // / (hindari pembagian dengan nol)
+            if (angka[j].first !== 0) {
+              angkaBaru.push({
+                first: angka[i].first / angka[j].first,
+                second: `(${angka[i].second}/${angka[j].second})`,
+              });
+              penyelesai(angkaBaru, hasil);
+              angkaBaru.pop();
+            }
+
+            // - (r - l)
+            angkaBaru.push({
+              first: angka[j].first - angka[i].first,
+              second: `(${angka[j].second}-${angka[i].second})`,
+            });
+            penyelesai(angkaBaru, hasil);
+            angkaBaru.pop();
+
+            // / (r / l) (hindari pembagian dengan nol)
+            if (angka[i].first !== 0) {
+              angkaBaru.push({
+                first: angka[j].first / angka[i].first,
+                second: `(${angka[j].second}/${angka[i].second})`,
+              });
+              penyelesai(angkaBaru, hasil);
+              angkaBaru.pop();
+            }
+          }
+        }
+      }
+
+      function main() {
+        const inputElement = document.getElementById("inputAngka");
+        const masukan = inputElement.value.split(",").map(Number);
+        const untukMenyelesaikan = masukan.map((angka) => ({
+          first: angka,
+          second: String(angka),
+        }));
+
+        const hasil = [];
+        penyelesai(untukMenyelesaikan, hasil);
+
+        const hasilOutput = document.getElementById("hasilOutput");
+        if (hasil.length === 0) {
+          hasilOutput.textContent = "Tidak ada solusi";
+        } else {
+          hasilOutput.textContent =
+            `Ada ${hasil.length} solusi:\n` + hasil.join("\n");
+        }
+      }
+    </script>
+  </body>
+</html>

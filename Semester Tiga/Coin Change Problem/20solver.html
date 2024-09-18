@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>20 GAME SOLVER</title>
+    <style>
+      /* Gaya untuk seluruh badan halaman */
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4d9d0; /* Warna latar belakang biru muda */
+        color: #921a40; /* Warna teks */
+        padding: 50px;
+        text-align: center;
+      }
+
+      /* Gaya untuk elemen judul */
+      h1 {
+        color: #c75b7a; /* Warna biru sedang */
+      }
+
+      /* Gaya untuk elemen input */
+      input[type="number"] {
+        padding: 10px;
+        margin: 10px 0;
+        width: 100px;
+        font-size: 14px;
+        border: 1px solid #c75b7a; /* Warna biru sedang */
+        border-radius: 5px;
+        text-align: center;
+      }
+
+      /* Gaya untuk tombol */
+      button {
+        background-color: #c75b7a; /* Warna biru sedang */
+        color: white;
+        padding: 10px 20px;
+        margin-top: 10px;
+        border: none;
+        border-radius: 5px;
+        font-size: 14px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+
+      /* Gaya tombol saat di-hover */
+      button:hover {
+        background-color: #921a40; /* Warna biru lebih terang */
+      }
+
+      /* Gaya untuk elemen hasil */
+      #hasilOutput {
+        margin-top: px;
+        padding: 70px;
+        background-color: #d9abab; /* Warna latar belakang biru sangat terang */
+        border: 1px solid #white; /* Warna biru sedang */
+        border-radius: 5px;
+        font-size: 16px;
+        text-align: center;
+        display: inline-block;
+        min-width: 300px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>20 GAME SOLVER</h1>
+    <p>Masukkan 4 angka:</p>
+    <!-- Empat input angka dengan tipe "number" untuk memastikan hanya angka yang dimasukkan oleh pengguna -->
+    <input type="number" id="angka1" placeholder="Angka 1" /><br /><br />
+    <input type="number" id="angka2" placeholder="Angka 2" /><br /><br />
+    <input type="number" id="angka3" placeholder="Angka 3" /><br /><br />
+    <input type="number" id="angka4" placeholder="Angka 4" /><br /><br />
+    <!-- Tombol untuk memulai pencarian solusi ketika diklik -->
+    <button onclick="main()">Cari Solusi</button>
+
+    <h2>Hasil:</h2>
+    <!-- Elemen <pre> untuk menampilkan hasil solusi, menggunakan format teks monospace -->
+    <pre id="hasilOutput"></pre>
+
+    <script>
+      function solver(angka, hasil) {
+        // Jika hanya satu angka yang tersisa dan mendekati 20 (dengan toleransi 0.01), tambahkan ke hasil
+        if (angka.length === 1 && Math.abs(angka[0].first - 20) < 0.01) {
+          hasil.push(angka[0].second);
+          return;
+        }
+
+        // Lakukan iterasi untuk mencari kombinasi pasangan angka
+        for (let i = 0; i < angka.length - 1; i++) {
+          for (let j = i + 1; j < angka.length; j++) {
+            let angkaBaru = [];
+            // Salin angka yang bukan pasangan i, j ke array angkaBaru
+            for (let k = 0; k < angka.length; k++) {
+              if (k !== i && k !== j) {
+                angkaBaru.push(angka[k]);
+              }
+            }
+
+            // Operasi penjumlahan
+            angkaBaru.push({
+              first: angka[i].first + angka[j].first,
+              second: `(${angka[i].second}+${angka[j].second})`,
+            });
+            solver(angkaBaru, hasil);
+            angkaBaru.pop(); // Kembalikan array ke kondisi semula
+
+            // Operasi pengurangan
+            angkaBaru.push({
+              first: angka[i].first - angka[j].first,
+              second: `(${angka[i].second}-${angka[j].second})`,
+            });
+            solver(angkaBaru, hasil);
+            angkaBaru.pop();
+
+            // Operasi perkalian
+            angkaBaru.push({
+              first: angka[i].first * angka[j].first,
+              second: `(${angka[i].second}*${angka[j].second})`,
+            });
+            solver(angkaBaru, hasil);
+            angkaBaru.pop();
+
+            // Operasi pembagian (hindari pembagian dengan nol)
+            if (angka[j].first !== 0) {
+              angkaBaru.push({
+                first: angka[i].first / angka[j].first,
+                second: `(${angka[i].second}/${angka[j].second})`,
+              });
+              solver(angkaBaru, hasil);
+              angkaBaru.pop();
+            }
+
+            // Operasi pengurangan dengan urutan terbalik (r - l)
+            angkaBaru.push({
+              first: angka[j].first - angka[i].first,
+              second: `(${angka[j].second}-${angka[i].second})`,
+            });
+            solver(angkaBaru, hasil);
+            angkaBaru.pop();
+
+            // Operasi pembagian dengan urutan terbalik (r / l) (hindari pembagian dengan nol)
+            if (angka[i].first !== 0) {
+              angkaBaru.push({
+                first: angka[j].first / angka[i].first,
+                second: `(${angka[j].second}/${angka[i].second})`,
+              });
+              solver(angkaBaru, hasil);
+              angkaBaru.pop();
+            }
+          }
+        }
+      }
+
+      function main() {
+        // Ambil nilai input dari pengguna
+        const angka1 = document.getElementById("angka1").value;
+        const angka2 = document.getElementById("angka2").value;
+        const angka3 = document.getElementById("angka3").value;
+        const angka4 = document.getElementById("angka4").value;
+
+        // Konversi nilai input ke angka dan masukkan ke dalam array
+        const masukan = [angka1, angka2, angka3, angka4].map(Number);
+        const untukMenyelesaikan = masukan.map((angka) => ({
+          first: angka,
+          second: String(angka),
+        }));
+
+        const hasil = [];
+        // Panggil fungsi solver untuk mencari semua kemungkinan solusi
+        solver(untukMenyelesaikan, hasil);
+
+        // Tampilkan hasil solusi pada elemen <pre>
+        const hasilOutput = document.getElementById("hasilOutput");
+        if (hasil.length === 0) {
+          hasilOutput.textContent = "Tidak ada solusi";
+        } else {
+          hasilOutput.textContent =
+            `Ada ${hasil.length} solusi:\n` + hasil.join("\n");
+        }
+      }
+    </script>
+  </body>
+</html>

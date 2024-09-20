@@ -95,6 +95,17 @@ function solver(angka, hasil, seen) {
           solver(angkaBaru, hasil, seen);
           angkaBaru.pop();
         }
+
+         if (hasil.size === 0) {
+        console.log("Tidak ada solusi");
+              }
+                 else {
+                console.log(`Ada ${hasil.size} solusi:`);
+                Array.from(hasil).forEach((solusi) => {
+                  console.log(solusi);
+            });
+          }
+        } 
       }
     }
   }

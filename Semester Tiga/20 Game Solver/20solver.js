@@ -1,4 +1,42 @@
 const readline = require("readline");
+// Menggunakan readline untuk input dari terminal
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout,
+});
+
+rl.question("Masukkan angka pertama: ", (angka1) => {
+  rl.question("Masukkan angka kedua: ", (angka2) => {
+    rl.question("Masukkan angka ketiga: ", (angka3) => {
+      rl.question("Masukkan angka keempat: ", (angka4) => {
+        main(angka1, angka2, angka3, angka4);
+        rl.close();
+      });
+    });
+  });
+});
+
+function main(angka1, angka2, angka3, angka4) {
+  const masukan = [angka1, angka2, angka3, angka4].map(Number);
+  const untukMenyelesaikan = masukan.map((angka) => ({
+    first: angka,
+    second: String(angka),
+  }));
+
+  const hasil = new Set();
+  const seen = new Set();
+
+  solver(untukMenyelesaikan, hasil, seen);
+
+  if (hasil.size === 0) {
+    console.log("Tidak ada solusi");
+  } else {
+    console.log(`Ada ${hasil.size} solusi:`);
+    Array.from(hasil).forEach((solusi) => {
+      console.log(solusi);
+    });
+  }
+}
 
 function solver(angka, hasil, seen) {
   if (angka.length === 1 && Math.abs(angka[0].first - 20) < 0.01) {
@@ -60,42 +98,3 @@ function solver(angka, hasil, seen) {
     }
   }
 }
-
-function main(angka1, angka2, angka3, angka4) {
-  const masukan = [angka1, angka2, angka3, angka4].map(Number);
-  const untukMenyelesaikan = masukan.map((angka) => ({
-    first: angka,
-    second: String(angka),
-  }));
-
-  const hasil = new Set();
-  const seen = new Set();
-
-  solver(untukMenyelesaikan, hasil, seen);
-
-  if (hasil.size === 0) {
-    console.log("Tidak ada solusi");
-  } else {
-    console.log(`Ada ${hasil.size} solusi:`);
-    Array.from(hasil).forEach((solusi) => {
-      console.log(solusi);
-    });
-  }
-}
-
-// Menggunakan readline untuk input dari terminal
-const rl = readline.createInterface({
-  input: process.stdin,
-  output: process.stdout,
-});
-
-rl.question("Masukkan angka pertama: ", (angka1) => {
-  rl.question("Masukkan angka kedua: ", (angka2) => {
-    rl.question("Masukkan angka ketiga: ", (angka3) => {
-      rl.question("Masukkan angka keempat: ", (angka4) => {
-        main(angka1, angka2, angka3, angka4);
-        rl.close();
-      });
-    });
-  });
-});

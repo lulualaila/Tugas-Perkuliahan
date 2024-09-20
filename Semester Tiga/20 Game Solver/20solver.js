@@ -1,4 +1,5 @@
 const readline = require("readline");
+
 // Menggunakan readline untuk input dari terminal
 const rl = readline.createInterface({
   input: process.stdin,

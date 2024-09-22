@@ -9,7 +9,7 @@ Algoritma yang digunakan dalam 20 Game Solver adalah algoritma Brute Force. Brut
 ## Cara Menggunakan
 1. Buka website Game 20 Solver melalui tautan yang disediakan.
 2. Masukkan angka-angka yang ingin Anda pecahkan di dalam game.
-3. Tekan tombol **"Solve"** untuk mendapatkan solusi atau langkah-langkah penyelesaian.
+3. Tekan tombol **"Cari Solusi"** untuk mendapatkan solusi atau langkah-langkah penyelesaian.
 
 ## Tautan Penting
 - Website: [Game 20 Solver Website] (https://lidya-lulu-20-game-solver.vercel.app/)

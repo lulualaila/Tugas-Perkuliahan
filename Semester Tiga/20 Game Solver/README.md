@@ -20,4 +20,3 @@ Algoritma yang digunakan dalam 20 Game Solver adalah algoritma Brute Force. Brut
 | --- | -------------------- | -------- |
 | 1   | Lidya Khairunnisa    | L0123075 |
 | 2   | Lu'lu'a Lim'a Laila  | L0123076 |
-| --- | -------------------- | -------- |

@@ -7,9 +7,9 @@
 Algoritma yang digunakan dalam 20 Game Solver adalah algoritma Brute Force. Brute Force akan mencoba semua kombinasi angka dan operator yang mungkin dari yang pertama sampai yang terakhir, dan apabila nilai sudah mencapai 20, maka looping akan memberikan return beserta operatornya. 
 
 ## Cara Menggunakan
-1. Buka website Game 20 Solver melalui tautan yang disediakan.
-2. Masukkan angka-angka yang ingin Anda pecahkan di dalam game.
-3. Tekan tombol **"Cari Solusi"** untuk mendapatkan solusi atau langkah-langkah penyelesaian.
+1. Buka website Game 20 Solver melalui tautan yang telah disediakan.
+2. Masukkan angka-angka yang ingin dipecahkan di dalam game.
+3. Tekan tombol **"Cari Solusi"** untuk mendapatkan solusi.
 
 ## Tautan Penting
 - Website: [Game 20 Solver Website] (https://lidya-lulu-20-game-solver.vercel.app/)

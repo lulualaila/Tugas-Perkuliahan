@@ -1,6 +1,5 @@
 const readline = require("readline");
 
-// Menghasilkan semua permutasi dari sebuah array
 function permutasi(arr) {
   if (arr.length <= 1) return [arr];
   let result = [];
@@ -15,7 +14,6 @@ function permutasi(arr) {
   return result;
 }
 
-// Menghasilkan semua kombinasi operator
 function kombinasiOperator(ops, k) {
   if (k === 1) return ops.map((op) => [op]);
   let result = [];
@@ -29,7 +27,6 @@ function kombinasiOperator(ops, k) {
   return result;
 }
 
-// Mengevaluasi lima jenis ekspresi berbeda dengan tanda kurung
 function evaluasiEkspresi(a, b, c, d, ops) {
   let hasil = [];
 
@@ -63,7 +60,6 @@ function solver(angka, hasil) {
             hasil.add(expr);
           }
         } catch (e) {
-          // Lewati jika ada ekspresi yang tidak valid (misalnya pembagian dengan nol)
         }
       }
     }

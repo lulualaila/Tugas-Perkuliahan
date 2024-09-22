@@ -13,7 +13,7 @@ Algoritma yang digunakan dalam 20 Game Solver adalah algoritma Brute Force. Brut
 
 ## Tautan Penting
 - Website: [Game 20 Solver Website] (https://lidya-lulu-20-game-solver.vercel.app/)
-- YouTube: [Penjelasan Kode di YouTube] (https://youtu.be/vrZQBEbFN_Y?si=2rpKCOUNcdJptsPD))
+- YouTube: [Penjelasan Kode di YouTube] (https://youtu.be/vrZQBEbFN_Y?si=2rpKCOUNcdJptsPD)
 
 ## Author
 | No  | Nama                 | NIM      |

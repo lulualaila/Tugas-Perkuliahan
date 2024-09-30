@@ -9,7 +9,7 @@
 3. Program akan menampilkan jumlah dan jenis koin yang digunakan.
 
 ## Tautan Penting
-- YouTube: [Penjelasan Kode di YouTube] (https://youtu.be/zx2Rkp9J-_U?si=uDajdyBsRJ0LGqsb)
+- YouTube: [Penjelasan Kode di YouTube] [(https://youtu.be/zx2Rkp9J-_U?si=uDajdyBsRJ0LGqsb)]
 
 ## Author
 | No  | Nama                 | NIM      |
